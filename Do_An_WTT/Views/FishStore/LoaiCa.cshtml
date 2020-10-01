@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Do_An_WTT.Models.PHANLOAI>
+@foreach(var item in Model) {
+<a href="@Url.Action("Catheoloai", "FishStore", new { id = item.MaLoai})">
+    <p><b>@item.TenLoai</b></p>
+</a> 
+}

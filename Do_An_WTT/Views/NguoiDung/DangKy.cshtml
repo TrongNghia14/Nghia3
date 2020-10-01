@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutFishStore.cshtml";
+}
+
+<style>
+    .login-page {
+        width: 600px;
+        padding: 8% 0 0;
+        margin: auto;
+        margin-bottom: 200px;
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 600px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+        .form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #4CAF50;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+            .form button:hover, .form button:active, .form button:focus {
+                background: #43A047;
+            }
+
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+            .form .message a {
+                color: #4CAF50;
+                text-decoration: none;
+            }
+
+        .form .register-form {
+            display: none;
+        }
+</style>
+<div>
+    <div class="login-page">
+        <h1 style="text-align:center; margin-bottom: 10px">Creative SignUp Form</h1>
+        <div class="form">
+            <div class="login-form">
+                @using(Html.BeginForm()) {
+                    @Html.ValidationSummary(true)
+                    @Html.TextBox("HotenKH", null, new { placeholder = "Họ tên" })@ViewData["LoiHT"]
+                    @Html.TextBox("TenDangNhap", null, new { placeholder = "Tên đăng nhập" })@ViewData["LoiTDN"]
+                    @Html.Password("MatKhau", null, new { placeholder = "Mật khẩu" })@ViewData["LoiMK"]
+                    @Html.Password("NhapLaiMatKhau", null, new { placeholder = "Nhập lại mật khẩu" })@ViewData["LoiNLMK"]
+                    @Html.TextBox("Email", null, new { placeholder = "Địa chỉ Email" })@ViewData["LoiEmail"]
+                    @Html.TextBox("DiaChi", null, new { placeholder = "Địa chỉ" })
+                    @Html.TextBox("DienThoai", null, new { placeholder = "Số điện thoại" })@ViewData["LoiDT"]
+                    <input type="date" name="NgaySinh"/>
+                    <button>Create</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div style="margin: 100px auto 100px auto;">
+        <table align="center" style="width: 30%;" >
+            <h2 style="text-align: center; margin-bottom:40px">Đăng ký tài khoản</h2>
+            @using(Html.BeginForm()) {
+                @Html.ValidationSummary(true)
+                <tr style="height: 40px;">
+                    <td>Họ tên: </td>
+                    <td>
+                        @Html.TextBox("HotenKH")
+                        <span style="color: red;">* @ViewData["LoiHT"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Tên đăng nhập: </td>
+                    <td>
+                        @Html.TextBox("TenDangNhap")
+                        <span style="color: red;">*  @ViewData["LoiTDN"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Mật khẩu: </td>
+                    <td>
+                        @Html.Password("MatKhau")
+                        <span style="color: red;">* @ViewData["LoiMK"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Nhập lại mật khẩu: </td>
+                    <td>
+                        @Html.Password("NhapLaiMatKhau")
+                        <span style="color: red;">* @ViewData["LoiNLMK"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Địa chỉ Email: </td>
+                    <td>
+                        @Html.TextBox("Email")
+                        <span style="color: red;">* @ViewData["LoiEmail"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 100px;">
+                    <td>Địa chỉ: </td>
+                    <td>
+                        @Html.TextArea("DiaChi")
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Điện thoại: </td>
+                    <td>
+                        @Html.TextBox("DienThoai")
+                        <span style="color: red;">* @ViewData["LoiDT"]</span>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td>Ngày sinh: </td>
+                    <td>
+                        <input type="date" name="NgaySinh" />
+                    </td>
+                </tr>
+
+                <tr style="height: 40px; text-align: center;">
+                    <td colspan="2">
+                        <input type="submit" value="Đăng ký" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>*@
+
+

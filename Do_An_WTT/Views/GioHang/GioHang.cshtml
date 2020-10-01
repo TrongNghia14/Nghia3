@@ -1,0 +1,181 @@
+﻿@using Do_An_WTT.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutFishStore.cshtml";
+}
+
+<div style="margin: 100px auto; font-size:larger;">
+    <div class="container mb-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped" style="width:150%;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã cá</th>
+                                <th scope="col">Tên cá</th>
+                                <th scope="col">Ảnh bìa</th>
+                                <th scope="col" class="text-center">Số lượng</th>
+                                <th scope="col" class="text-right">Đơn giá</th>
+                                <th scope="col">Thành tiền</th>
+                                <th> </th>
+                                <th> </th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model) {
+                                <tr style="text-align: center; font-weight: bold">
+                                    <td>@item.iMaca</td>
+                                    <td>@item.sTenca</td>
+                                    <td><img style="width:150px;" src="~/Content/images/@item.sAnhbia"></td>
+                                    @using(Html.BeginForm("Capnhatgiohang", "GioHang", new { @iMasp = item.iMaca })) {
+                                        <td>
+                                            <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" style="background-color: yellowgreen;" />
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,0}", item.dDongia)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,0}", item.dThanhtien)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Chitietca", "FishStore", new { id = item.iMaca})">Chi tiết</a>
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Xóa", "Xoatungsanpham", new { @iMasp = item.iMaca }, new { @onclick = "return Xacnhanxoa()", @class = "vdelete", title = "Xóa" })
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="Cập Nhật" />
+                                        </td>
+                                    }
+                                </tr>
+                            }
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Tổng số lượng cá</td>
+                                <td class="text-right">@ViewBag.Tongsoluong</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Tổng tiền</td>
+                                <td class="text-right">@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <script type="text/javascript">
+                        function Xacnhanxoa() {
+                            if (confirm("Bạn chắc chắn muốn xóa loại cá này trong giỏ hàng?"))
+                                return true;
+                            else
+                                return false;
+                        }
+                        FocusEvent = false;
+                        checked = false;
+                    </script>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <div class="row">
+                    <div class="col-sm-12  col-md-4">
+                        <a href="@Url.Action("SanPham", "FishStore", new { @class = "btn btn-lg btn-block btn-light"})">Tiếp tục mua sắm</a>
+                    </div>
+                    <div class="col-sm-12  col-md-4">
+                        <img style="width: 40px" src="~/Content/images/trash_can.png"/>@Html.ActionLink("Xóa tất cả sản phẩm", "Xoatatcasanpham")
+                    </div>
+                    <div class="col-sm-12 col-md-4 text-right">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase" style="font-weight: 800;">@Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div style="margin: 100px 0; font-size: 25px;">
+        <h2 style="text-align: center; margin-bottom:40px;">THÔNG TIN GIỎ HÀNG</h2>
+        <table align="center" border="1" style="width: 80%;">
+            <tr style="text-align: center; font-weight: bold">
+                <td>Mã cá</td>
+                <td>Tên cá</td> 
+                <td>Ảnh bìa</td>
+                <td>Số lượng</td>
+                <td>Đơn giá</td>
+                <td>Thành tiền</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach(var item in Model) {
+                <tr style="text-align: center; font-weight: bold">
+                    <td>@item.iMaca</td>
+                    <td>@item.sTenca</td>
+                    <td><img style="width:250px; margin: 20px 0;" src="~/Content/images/@item.sAnhbia"></td>
+                    @using(Html.BeginForm("Capnhatgiohang", "GioHang", new { @iMasp = item.iMaca })) {
+                        <td>
+                            <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" style="background-color: yellowgreen;" />
+                        </td>
+                        <td>
+                            @String.Format("{0:0,0}", item.dDongia)
+                        </td>
+                        <td>
+                            @String.Format("{0:0,0}", item.dThanhtien)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Chitietca", "FishStore", new { id = item.iMaca})">Chi tiết</a>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Xóa", "Xoatungsanpham", new { @iMasp = item.iMaca }, new { @onclick = "return Xacnhanxoa()", @class = "vdelete", title = "Xóa" })
+                        </td>
+                        <td>
+                            <input type="submit" value="Cập Nhật" />
+                        </td>
+                    }
+                </tr>
+            }
+            <tr style="font-weight: bold; text-align: right; color: red; ">
+                <td colspan="4">
+                    Số lượng cá: @ViewBag.Tongsoluong
+                </td>
+                <td colspan="5">
+                    Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ
+                </td>
+            </tr>
+            <tr style="font-weight: bold; text-align: right;">
+                <td colspan="9">
+                    @Html.ActionLink("Xóa tất cả sản phẩm", "Xoatatcasanpham")
+                </td>
+            </tr>
+            <tr style="font-weight: bold;">
+                <td colspan="9" align="center">
+                    @Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")
+                </td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            function Xacnhanxoa() {
+                if (confirm("Bạn chắc chắn muốn xóa loại cá này trong giỏ hàng?"))
+                    return true;
+                else
+                    return false;
+            }
+            FocusEvent = false;
+            checked = false;
+        </script>
+    </div>*@
+

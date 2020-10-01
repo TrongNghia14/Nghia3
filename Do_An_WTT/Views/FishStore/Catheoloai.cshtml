@@ -1,0 +1,54 @@
+﻿
+<style>
+    .baongoai {
+        width: 1800px;
+        height: 1100px;
+        margin: 100px auto;
+    }
+
+    .cotmenu {
+        width: 500px;
+        height: 1000px;
+        float: left;
+        text-align: center;
+    }
+
+        .cotmenu p {
+            line-height: 3;
+            font-size: 140%;
+        }
+
+    .ca {
+        width: 1300px;
+        float: right;
+    }
+</style>
+
+@model IEnumerable<Do_An_WTT.Models.CA>
+@{
+    ViewBag.Title = "Catheoloai";
+    Layout = "~/Views/Shared/_LayoutFishStore.cshtml";
+}
+
+<div class="baongoai">
+    <div class="cotmenu">
+        <h2 style="margin-bottom: 30px;">Các loại cá</h2>
+        @Html.Action("LoaiCa", "FishStore") <!-- Lấy dữ liệu các loại cá từ Partial view "LoaiCa"-->
+        <hr style="width: 80%; align-content: center;" />
+        <h2 style="margin-bottom: 30px;">Nhà cung cấp</h2>
+        @Html.Action("Nhacungcap", "FishStore") <!-- Lấy dữ liệu các nhà cung cấp từ Partial view "Nhacungcap"-->
+    </div>
+    <div class="ca">
+        <h2 style="text-align: center;">Cá theo loại</h2>
+        <div class="row">
+            @foreach(var ca in Model) {
+            <div class="col-md-3" style="margin: 50px 25px 50px 50px;">
+                <a href="@Url.Action("Chitietca", "FishStore", new { id = ca.MaCa})">
+                    <img src="~/Content/images/@ca.AnhBia" width="300" />
+                </a>
+                <p style="text-align: center; font-size: 140%;"><b>@ca.TenCa</b></p>
+            </div>
+            }
+        </div>
+    </div>
+</div>

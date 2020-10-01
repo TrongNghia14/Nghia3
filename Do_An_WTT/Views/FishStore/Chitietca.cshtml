@@ -1,0 +1,64 @@
+﻿<style>
+    .baongoai {
+        width: 1800px;
+        height: 1100px;
+        margin: 100px auto;
+    }
+
+    .cotmenu {
+        width: 500px;
+        height: 1000px;
+        float: left;
+        text-align: center;
+    }
+
+        .cotmenu p {
+            line-height: 3;
+            font-size: 140%;
+        }
+
+    .ca {
+        width: 1300px;
+        float: right;
+    }
+
+        .ca p {
+            font-size: 20px;
+        }
+</style>
+
+@{
+    ViewBag.Title = "Chitietca";
+    Layout = "~/Views/Shared/_LayoutFishStore.cshtml";
+}
+
+<div class="baongoai">
+    <div class="cotmenu">
+        <h2 style="margin-bottom: 30px;">Nguồn gốc</h2>
+        @Html.Action("LoaiCa", "FishStore") <!-- Lấy dữ liệu các loại cá từ Partial view "LoaiCa"-->
+        <hr style="width: 80%; align-content: center;" />
+        <h2 style="margin-bottom: 30px;">Nhà cung cấp</h2>
+        @Html.Action("Nhacungcap", "FishStore") <!-- Lấy dữ liệu các nhà cung cấp từ Partial view "Nhacungcap"-->
+    </div>
+    <div class="ca">
+        <h2 style="text-align: center;">Chi tiết cá</h2>
+        <div style="margin: 50px 0 0 200px;">
+            <img src="~/Content/images/@Model.AnhBia"/>
+            <p style="margin-top: 50px;"><b>Mã cá:</b> @Model.MaCa</p>
+            <p><b>Tên cá:</b> @Model.TenCa</p>
+            <p><b>Giá bán:</b> @Model.GiaBan VNĐ</p>
+            <p><b>Số lượng tồn:</b> @Model.SoLuongTon</p>
+            <p><b>Ngày cập nhập:</b> @Model.NgayCapNhap</p>
+            <p><b>Mô tả:</b> @Model.MoTa</p>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a style="background-color: green; color: white; font-size: larger; border-radius: 10px; padding: 10px 15px; margin-top: 50px;"
+               href="@Url.Action("ThemGioHang", "GioHang", new { @iMaca = @Model.MaCa, @strURL = Request.Url.ToString()})">
+                    Thêm vào giỏ hàng
+            </a> 
+        </div>
+    </div>
+</div>
+
+
+

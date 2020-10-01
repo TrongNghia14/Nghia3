@@ -1,0 +1,57 @@
+﻿<style>
+    .baongoai {
+        width: 1800px;
+        height: 1100px;
+        margin: 100px auto;
+    }
+
+    .cotmenu {
+        width: 500px;
+        height: 1000px;
+        float: left;
+        text-align: center;
+    }
+
+        .cotmenu p {
+            line-height: 3;
+            font-size: 140%;
+        }
+
+    .ca {
+        width: 1300px;
+        float: right;
+    }
+    .ca p{
+        font-size: 20px;
+    }
+</style>
+
+@{
+    ViewBag.Title = "Nhacungcaptheoloai";
+    Layout = "~/Views/Shared/_LayoutFishStore.cshtml";
+}
+
+
+<div class="baongoai">
+    <div class="cotmenu">
+        <h2 style="margin-bottom: 30px;">Nguồn gốc</h2>
+        @Html.Action("LoaiCa", "FishStore") <!-- Lấy dữ liệu các loại cá từ Partial view "LoaiCa"-->
+        <hr style="width: 80%; align-content: center;" />
+        <h2 style="margin-bottom: 30px;">Nhà cung cấp</h2>
+        @Html.Action("Nhacungcap", "FishStore") <!-- Lấy dữ liệu các nhà cung cấp từ Partial view "Nhacungcap"-->
+    </div>
+    <div class="ca">
+        <h2 style="text-align: center;">Thông tin nhà cung cấp</h2>
+        <div style="margin: 50px 0 0 200px;">
+            @foreach(var ncc in Model) {
+                <div>
+                    <p><b>Tên nhà cung cấp:</b> @ncc.TenNCC</p>
+                    <p><b>Địa chỉ:</b> @ncc.DiaChi</p>
+                    <p><b>Điện thoại:</b> @ncc.DienThoai</p>
+                    <p><b>Email:</b> @ncc.Email</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

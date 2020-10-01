@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Do_An_WTT.Models.NHACUNGCAP>
+@foreach(var item in Model) {
+    <a href="@Url.Action("Nhacungcaptheoloai", "FishStore", new { id = item.MaNCC})">
+        <p><b>@item.TenNCC</b></p>
+    </a>    
+}
